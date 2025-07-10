@@ -19,24 +19,28 @@ export default {
         async verifyUser() {
             const accessToken = this.getAccessToken;
 
-            const tokenParts = accessToken.split('.');
-            if (tokenParts.length !== 3) {
-                return;
-            }
-
-            try {
-                const decodedPayload = atob(tokenParts[1]);
-                const parsedPayload = JSON.parse(decodedPayload);
-
-                const currentTime = Date.now() / 1000;  
-                if (parsedPayload.exp && parsedPayload.exp < currentTime) {
-                    this.remove_user(); 
+            if (accessToken) {
+                const tokenParts = accessToken.split('.');
+                if (tokenParts.length !== 3) {
                     return;
                 }
 
-            } catch (error) {
-                console.error("Error decoding token:", error);
+                try {
+                    const decodedPayload = atob(tokenParts[1]);
+                    const parsedPayload = JSON.parse(decodedPayload);
+
+                    const currentTime = Date.now() / 1000;
+                    if (parsedPayload.exp && parsedPayload.exp < currentTime) {
+                        this.remove_user();
+                        return;
+                    }
+
+                } catch (error) {
+                    console.error("Error decoding token:", error);
+                }
             }
+
+
 
         }
     }
@@ -220,8 +224,4 @@ input[type="number"] {
     font-size: 4.6rem;
     line-height: 5.4rem;
 }
-
-
-
-
 </style>

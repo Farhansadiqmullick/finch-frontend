@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+dist
+
+# Git files
+.git
+.gitignore
+
+# Logs
+*.log
+
+# OS metadata
+.DS_Store
+
+# Docker files themselves (not needed in the build context)
+Dockerfile
+.dockerignore
+
+# Editor/IDE files
+.vscode
+.idea
