@@ -15,6 +15,7 @@ dist
 # Docker files themselves (not needed in the build context)
 Dockerfile
 .dockerignore
+docker-compose.yaml
 
 # Editor/IDE files
 .vscode
